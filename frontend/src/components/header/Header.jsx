@@ -1,16 +1,19 @@
 import React from 'react'
 import './Header.css'
 import Navbar from '../Navbar/navbar'
+
 function Header() {
   return (
- 
-    <div>   <Navbar/>
+    <div>
+      <Navbar />
       <div className="header">
         <div className="header-content">
-            <h1> order your food here </h1>
-       
-<p>for Delicious food , come to our place . Try 1 time and will come evertime</p> 
-     <button>order now</button>   </div>
+          <h1>Order your food here</h1>
+          <p>
+            For delicious food, come to our place. Try once and you’ll come every time!
+          </p>
+          <button>Order Now</button>
+        </div>
       </div>
     </div>
   )
