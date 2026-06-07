@@ -2,17 +2,18 @@ import React from 'react'
 import { useState } from  'react'
 import  './Navbar.css' 
 import { assets } from '../../assets/frontend_assets/assets.js'
-
-const Navbar = () => {
+import {Link} from 'react-router-dom'
+import setShowLoginPop from '../../App'
+const Navbar = ({setShowLoginPop}) => {
 let [menu,setMenu]=useState("home")   
   return (
     <div className='navbar'>
       <img src={assets.logo} alt="" className='logo'/>
       <ul className="navbar-menu">
-        <li onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>Home</li>
-        <li onClick={()=>setMenu("menu")} className={menu==="menu"?"active":""}>menu</li>
+        <Link to="/" onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>Home</Link>
+        <a href="#explore-menu" onClick={()=>setMenu("menu")} className={menu==="menu"?"active":""}>menu</a>
         <li onClick={()=>setMenu("mobile-app")}  className={menu==="mobile-app"?"active":""}>mobile-app</li>
-        <li onClick={()=>setMenu("contact-us")}  className={menu==="contact-us"?"active":""}>contact-us</li>
+        <a href='#footer' onClick={()=>setMenu("contact-us")}  className={menu==="contact-us"?"active":""}>contact-us</a>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
@@ -20,7 +21,7 @@ let [menu,setMenu]=useState("home")
             <img src={assets.basket_icon} alt="" />
             <div className="dot"></div>
           </div>
-          <button>sign in</button>
+          <button onClick={()=> setShowLoginPop(true)}>sign in</button>
            </div>
 
     </div>

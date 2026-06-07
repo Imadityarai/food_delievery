@@ -34,4 +34,9 @@
 .explore-menu-list-item .active{
     border: 2px solid red;
     padding:5px
+}@media (max-width:1050px){
+    .explore-menu-list-item{
+        max-width:100%;
+        font: 4px;
+    }
 }

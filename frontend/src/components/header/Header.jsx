@@ -5,7 +5,7 @@ import Navbar from '../Navbar/navbar'
 function Header() {
   return (
     <div>
-      <Navbar />
+  
       <div className="header">
         <div className="header-content">
           <h1>Order your food here</h1>

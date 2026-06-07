@@ -4,7 +4,7 @@ import { assets } from '../../assets/frontend_assets/assets';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
       {/* Left Section */}
       <div className="footer-section footer-left">
         <img src={assets.logo} alt="Company Logo" className="footer-logo" />
