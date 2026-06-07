@@ -10,7 +10,8 @@ import navbar from './components/Navbar/Navbar'
 const App = () => {
   const [showloginpop,setShowLoginPop]=React.useState(false)
   return (<>
-    {showloginpop?<Loginpop/>:<></>},
+    {showloginpop && <Loginpop setShowLoginPop={setShowLoginPop} />}
+,
     
     <div className='app'>
       <Navbar setShowLoginPop={setShowLoginPop} />
