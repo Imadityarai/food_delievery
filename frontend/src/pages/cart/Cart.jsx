@@ -2,18 +2,9 @@ import React, { useContext } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import './cart.css';
 import { StoreContext } from '../../context/store_context';
-
+import {Link} from "react-router-dom"
 function Cart() {
-  const { cartItems, food_list, removefromCart } = useContext(StoreContext);
-
-  // Calculate subtotal
-  const subtotal = food_list.reduce((acc, item) => {
-    return acc + (cartItems[item._id] ? cartItems[item._id] * item.price : 0);
-  }, 0);
-
-  const deliveryFee = subtotal > 0 ? 50 : 0;
-  const totalAmount = subtotal + deliveryFee;
-
+  const { cartItems, food_list, removefromCart,subtotal,deliveryFee,totalAmount } = useContext(StoreContext);
   return (
     <div className="cart">
       <div className="cart-items">
@@ -56,7 +47,7 @@ function Cart() {
           <span>Total Amount:</span>
           <span>₹{totalAmount}</span>
         </div>
-        <button className="checkout-btn">Proceed to Checkout</button>
+   <Link to="/placeorder"> <button className="checkout-btn">Proceed to Checkout</button></Link> 
       </div>
     </div>
   );

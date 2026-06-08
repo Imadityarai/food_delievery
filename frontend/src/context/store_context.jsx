@@ -27,13 +27,23 @@ useEffect(()=>{
 
 },[cartItems])
 
-    const contextValue = {
-        food_list,
-        cartItems,
-        setCartItems,
-        addtoCart,
-        removefromCart
-    }
+const subtotal = food_list.reduce((acc, item) => {
+  return acc + (cartItems[item._id] ? cartItems[item._id] * item.price : 0);
+}, 0);
+
+const deliveryFee = subtotal > 0 ? 50 : 0;
+const totalAmount = subtotal + deliveryFee;
+
+const contextValue = {
+  food_list,
+  cartItems,
+  addtoCart,
+  removefromCart,
+  subtotal,
+  deliveryFee,
+  totalAmount
+};
+
     return (
         <StoreContext.Provider value={contextValue}>
             {props.children}

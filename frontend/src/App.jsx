@@ -7,6 +7,7 @@ import Placeorder from './pages/placeorder/Placeorder'
 import Header  from './components/header/Header'
 import Loginpop from './components/loginpop/Loginpop'
 import navbar from './components/Navbar/Navbar'
+import Link from 'react'
 const App = () => {
   const [showloginpop,setShowLoginPop]=React.useState(false)
   return (<>
