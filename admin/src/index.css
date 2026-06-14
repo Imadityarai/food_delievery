@@ -20,3 +20,29 @@ hr{
 .app content{
   display:flex;
 }
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-layout {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 220px; /* fixed width */
+  background: #f4f4f4;
+}
+
+.page-content {
+  flex: 1;
+  padding: 1rem;
+  background: #fff;
+}
+.flex col{
+  display: flex;
+  flex-direction: column;
+  gap:20px
+}
