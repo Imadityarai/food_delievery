@@ -1,13 +1,11 @@
 import React from 'react'
-import Navbar  from './components/Navbar/navbar'
+import Navbar  from './components/Navbar/Navbar'
 import { Route,Routes }  from 'react-router-dom'
 import Home from './pages/home/Home'
 import Cart from './pages/cart/Cart'
 import Placeorder from './pages/placeorder/Placeorder'
 import Header  from './components/header/Header'
 import Loginpop from './components/loginpop/Loginpop'
-import navbar from './components/Navbar/Navbar'
-import Link from 'react'
 const App = () => {
   const [showloginpop,setShowLoginPop]=React.useState(false)
   return (<>
