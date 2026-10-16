@@ -10,11 +10,8 @@ import { uploadsDir } from "./config/uploads.js";
 
 const app = express();
 const port = Number(process.env.PORT || 4000);
-const allowedOrigins = (process.env.CLIENT_ORIGINS || "http://localhost:5173,http://localhost:5174")
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
-
+const allowedOrigins =
+process.env.CLIENT_ORIGINS?.split(",");
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT_SECRET must be set in the environment");
 }
