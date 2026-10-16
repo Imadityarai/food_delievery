@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./List.css";
+import { API_URL, imageUrl } from "../../config/api";
 
 const List = () => {
   const [foods, setFoods] = useState([]);
@@ -8,7 +9,7 @@ const List = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/food/list");
+        const res = await axios.get(`${API_URL}/api/food/list`);
         if (res.data.success) {
           setFoods(res.data.data);
         }
@@ -21,7 +22,9 @@ const List = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.post("http://localhost:4000/api/food/delete", { id });
+      const res = await axios.post(`${API_URL}/api/food/delete`, { id }, {
+        headers: { Authorization: localStorage.getItem('adminToken') },
+      });
       if (res.data.success) {
         // remove from UI
         setFoods((prev) => prev.filter((food) => food._id !== id));
@@ -47,7 +50,7 @@ const List = () => {
               ✖
             </button>
             <img
-              src={`http://localhost:4000/images/${food.image}`}
+              src={imageUrl(food.image)}
               alt={food.name}
               className="food-image"
             />

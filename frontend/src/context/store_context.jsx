@@ -1,6 +1,7 @@
 // store_context.jsx
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config/api";
 
 export const StoreContext = createContext(null);
 
@@ -12,7 +13,7 @@ const StoreContextProvider = (props) => {
   // ✅ Fetch food list from backend
   const get_data = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/food/list");
+      const response = await axios.get(`${API_URL}/api/food/list`);
       setFoodlist(response.data.data || []);
     } catch (err) {
       console.error("Failed to fetch food list:", err);
@@ -33,7 +34,7 @@ const StoreContextProvider = (props) => {
   // ✅ Load cart data from backend
   const loadCartData = async (currentToken) => {
     try {
-      const response = await axios.get("http://localhost:4000/api/cart/list", {
+      const response = await axios.get(`${API_URL}/api/cart/list`, {
         headers: { Authorization: currentToken },
       });
 
@@ -71,7 +72,7 @@ const StoreContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(
-          "http://localhost:4000/api/cart/add",
+          `${API_URL}/api/cart/add`,
           { itemId },
           { headers: { Authorization: token } }
         );
@@ -94,7 +95,7 @@ const StoreContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(
-          "http://localhost:4000/api/cart/remove",
+          `${API_URL}/api/cart/remove`,
           { itemId },
           { headers: { Authorization: token } }
         );

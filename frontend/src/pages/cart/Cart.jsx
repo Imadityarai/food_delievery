@@ -3,6 +3,7 @@ import { assets } from '../../assets/frontend_assets/assets';
 import './cart.css';
 import { StoreContext } from '../../context/store_context';
 import {Link} from "react-router-dom"
+import { imageUrl } from "../../config/api";
 function Cart() {
   const { cartItems, food_list, removefromCart,subtotal,deliveryFee,totalAmount } = useContext(StoreContext);
   return (
@@ -12,7 +13,7 @@ function Cart() {
           if (cartItems[item._id] > 0) {
             return (
               <div className="cart-item" key={item._id}>
-                <img src={ `http://localhost:4000/images/${item.image}`} alt={item.name} className="cart-item-image" />
+                <img src={imageUrl(item.image)} alt={item.name} className="cart-item-image" />
                 <div className="cart-item-details">
                   <p className="cart-item-name">{item.name}</p>
                   <p className="cart-item-quantity">Qty: {cartItems[item._id]}</p>

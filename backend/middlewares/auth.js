@@ -4,7 +4,7 @@ const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.json({
+    return res.status(401).json({
       success: false,
       msg: "Not Authorized",
     });
@@ -17,9 +17,9 @@ const authMiddleware = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log(error);
+    console.error("Authentication failed:", error);
 
-    return res.json({
+    return res.status(401).json({
       success: false,
       msg: "Authentication Failed",
     });

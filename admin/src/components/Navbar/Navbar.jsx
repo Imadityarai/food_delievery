@@ -1,11 +1,10 @@
-import React from 'react'
 import {assets} from '../../admin_assets/assets'
 import './Navbar.css'
-const Navbar = () => {
+const Navbar = ({ onLogout }) => {
   return (
     <div className='navbar'>
         <img src={assets.logo} alt="" className="logo" />
-      <img src={assets.profile_image} alt="" className="profile" />
+      <button type="button" onClick={onLogout}>Log out</button>
     </div>
   )
 }

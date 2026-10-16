@@ -3,6 +3,7 @@ import React from 'react'
 import { StoreContext } from '../../context/store_context'
 import FoodItems  from '../FoodItems/FoodItems'
 import './FoodDisplay.css'
+import { imageUrl } from "../../config/api";
 const FoodDisplay=({category})=> {
   const { food_list } = useContext(StoreContext)
   return (
@@ -12,7 +13,7 @@ const FoodDisplay=({category})=> {
         {food_list.map((item,index)=>{
           if(category==='All'||category==item.category){
            return <FoodItems key={index} id={item._id} name={item.name}
-           description={item.description} price={item.price} image={`http://localhost:4000/images/${item.image}`} category={item.category}></FoodItems>
+           description={item.description} price={item.price} image={imageUrl(item.image)} category={item.category}></FoodItems>
           }
         })}
       </div>

@@ -2,10 +2,11 @@ import React, { useState, useContext } from 'react';
 import './Loginpop.css';
 import axios from "axios";
 import { StoreContext } from '../../context/store_context';
+import { API_URL } from "../../config/api";
 
 const Loginpop = ({ setShowLoginPop }) => {
   // ✅ Access context inside the component
-  const { token, setToken } = useContext(StoreContext);
+  const { setToken } = useContext(StoreContext);
 
   // Track current mode: "signin" or "signup"
   const [currState, setCurrState] = useState("signin");
@@ -25,7 +26,7 @@ const Loginpop = ({ setShowLoginPop }) => {
   // Handle login/register
   const onLogin = async (event) => {
     event.preventDefault();
-    let user_url = "http://localhost:4000/api/user";
+    let user_url = `${API_URL}/api/user`;
     user_url += currState === "signin" ? "/login" : "/register";
 
     try {

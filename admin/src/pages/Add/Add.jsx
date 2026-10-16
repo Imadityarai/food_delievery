@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { ToastContainer, toast } from "react-toastify";
+import { useState } from 'react'
+import { toast } from "react-toastify";
 import './Add.css'
 import { assets } from '../../admin_assets/assets'
 import axios from 'axios'
+import { API_URL } from '../../config/api'
 const Add = () => {
   const[image,setImage]=useState(false);
   const[data,setData]=useState({
@@ -18,6 +19,7 @@ const Add = () => {
   }
 const submit_handler = async (event) => {
   event.preventDefault(); // stop page reload
+  const form = event.currentTarget;
 
   const formdata = new FormData();
   formdata.append("name", data.name);
@@ -27,7 +29,10 @@ const submit_handler = async (event) => {
   formdata.append("image", image); 
 
 
-    const res = await axios.post("http://localhost:4000/api/food/add", formdata)
+    try {
+    const res = await axios.post(`${API_URL}/api/food/add`, formdata, {
+      headers: { Authorization: localStorage.getItem('adminToken') },
+    })
   if (res.data.success==true)
   {toast.success("food added");
     setData({
@@ -36,12 +41,15 @@ const submit_handler = async (event) => {
     "category":"salad",
     "price":0,
     });
-    useState(false);
-   
-    
+    setImage(false);
+    form.reset();
   } else{
     toast.error("error not added")
   }
+    } catch (error) {
+      console.error('Failed to add food:', error)
+      toast.error(error.response?.data?.message || 'Unable to add food')
+    }
   }
 
   return (
@@ -57,11 +65,11 @@ const submit_handler = async (event) => {
       </div>
       <div className="add-product-name flex-col">
         <p>Product Name</p>
-        <input onChange={add_handler} value={data.name}type="text" name='name'/>
+        <input onChange={add_handler} value={data.name} type="text" name='name' required />
       </div>
       <div className="add-product-description flex-col">
  <p>Product Description</p>
- <textarea onChange={add_handler} value={data.description} name="description" rows="6" id=""></textarea>
+ <textarea onChange={add_handler} value={data.description} name="description" rows="6" required></textarea>
    </div>
    <div className="add-catogory-price">
     <div className="add-category flex-col">
@@ -78,7 +86,7 @@ const submit_handler = async (event) => {
     </div>
     <div className="add-price flex-col">
       <p>Product Price</p>
-      <input type="Number" name="price" onChange={add_handler} value={data.price}/>
+      <input type="number" min="0.01" step="0.01" name="price" onChange={add_handler} value={data.price} required />
     </div>
    </div>
    <button type='submit' className='add-btn'>Add</button>

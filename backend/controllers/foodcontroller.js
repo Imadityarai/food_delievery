@@ -1,5 +1,7 @@
 import foodmodel from "../models/food_models.js";
 import fs from "fs";
+import path from "path";
+import { uploadsDir } from "../config/uploads.js";
 
 const addFood = async (req, res) => {
   try {
@@ -44,7 +46,7 @@ const deleteFood = async (req, res) => {
 
     // Safely delete image file
     try {
-      await fs.promises.unlink(`uploads/${food_del.image}`);
+      await fs.promises.unlink(path.join(uploadsDir, food_del.image));
     } catch (err) {
       console.warn("Image file not found:", err.message);
     }

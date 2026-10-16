@@ -5,7 +5,7 @@ import validator from "validator"
 
 //login user
 const createToken=(id)=>{
-    return jwt.sign({id},process.env.JWT_SECRET)
+    return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:"7d"})
 }
 const loginUser=async(req,res)=>{
 const {email,password}=req.body;
@@ -22,7 +22,8 @@ const token=createToken(user._id);
 res.json({success:true,token});
 }
 catch(error){
-   console.log(error); 
+   console.error("Login failed:", error);
+   return res.status(500).json({success:false,message:"Unable to log in"})
 }
 }
 
@@ -52,8 +53,8 @@ const token=createToken(user._id)
 res.json({success:true,token});
 }
 catch(error){
-    console.log("error")
-    res.json({success:false,message:"error"})
+    console.error("Registration failed:", error);
+    res.status(500).json({success:false,message:"Unable to register"})
 
 }
 }
