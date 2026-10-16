@@ -1,18 +1,35 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/frontend_assets/assets.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/store_context.jsx';
+import { ADMIN_URL } from '../../config/api.js';
 
-const Navbar = ({ setShowLoginPop }) => {
+const Navbar = ({ setShowLoginPop, searchQuery, setSearchQuery }) => {
   const { token, setToken } = useContext(StoreContext);
   const [menu, setMenu] = useState("home");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchInputRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+  }, [searchOpen]);
 
   const logout = () => {
     localStorage.removeItem("token"); // remove by key name
     setToken("");                      // clear context
     navigate("/");                     // redirect to home
+  };
+
+  const toggleSearch = () => {
+    if (searchOpen) {
+      setSearchQuery("");
+      setSearchOpen(false);
+      return;
+    }
+    navigate("/");
+    setSearchOpen(true);
   };
 
   return (
@@ -29,7 +46,40 @@ const Navbar = ({ setShowLoginPop }) => {
       </ul>
 
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="Search" />
+        {searchOpen && (
+          <input
+            ref={searchInputRef}
+            className="navbar-search-input"
+            type="search"
+            placeholder="Search dishes..."
+            aria-label="Search dishes"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") toggleSearch();
+            }}
+          />
+        )}
+        <button
+          className="navbar-search-button"
+          type="button"
+          onClick={toggleSearch}
+          aria-label={searchOpen ? "Close search" : "Search dishes"}
+          aria-expanded={searchOpen}
+        >
+          <img src={assets.search_icon} alt="" />
+        </button>
+
+        {ADMIN_URL && (
+          <a
+            className="navbar-admin-link"
+            href={ADMIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Admin
+          </a>
+        )}
 
         <div className="navbar-search-icon">
           <Link to="/cart">

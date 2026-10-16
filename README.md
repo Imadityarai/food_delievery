@@ -35,6 +35,7 @@ Deploy `frontend` and `admin` as two separate static sites:
 - Build command: `npm install && npm run build`
 - Output directory: `dist`
 - Set `VITE_API_URL` to the deployed API's HTTPS base URL (for example `https://your-api.example.com`) in each site's build environment.
+- Set `VITE_ADMIN_URL` in the customer site's build environment to the deployed admin site's URL to show the Admin entry point in the customer navigation and footer. It can be set to `http://localhost:5174` for local development.
 - Add the final site origins to the API's `CLIENT_ORIGINS` and redeploy the API.
 
 The admin app now requires the server-configured admin credentials. Its menu create/delete API routes also require an admin JWT; never put admin credentials in a `VITE_*` variable or ship them in browser code.

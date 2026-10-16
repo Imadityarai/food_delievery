@@ -21,3 +21,15 @@
     align-items: center;
     gap: 10px;
 }
+.food-item-action{
+    display:flex;
+    padding:0;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+}
+.food-item-action:focus-visible{
+    outline:2px solid tomato;
+    outline-offset:3px;
+    border-radius:50%;
+}

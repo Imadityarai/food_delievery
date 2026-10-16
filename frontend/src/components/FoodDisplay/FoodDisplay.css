@@ -12,3 +12,8 @@
     gap:30px;
     row-gap: 50px;
 }
+.food-display-empty{
+    margin: 24px 0;
+    color: #666;
+    text-align: center;
+}

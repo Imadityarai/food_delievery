@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { assets } from '../../assets/frontend_assets/assets';
+import { ADMIN_URL } from '../../config/api';
 
 function Footer() {
   return (
@@ -21,6 +22,7 @@ function Footer() {
           <li><a href="/about">About Us</a></li>
           <li><a href="/delivery">Delivery</a></li>
           <li><a href="/privacy">Privacy Policy</a></li>
+          {ADMIN_URL && <li><a href={ADMIN_URL} target="_blank" rel="noopener noreferrer">Admin login</a></li>}
         </ul>
       </div>
 

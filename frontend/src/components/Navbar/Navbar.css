@@ -20,6 +20,36 @@
     gap: 40px;
  cursor: pointer;
 }
+.navbar-search-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px !important;
+  border:0 !important;
+}
+.navbar .navbar-search-button:hover{
+  background:transparent !important;
+}
+.navbar-search-button img{
+  width:24px;
+  height:24px;
+}
+.navbar-search-input{
+  width:190px;
+  padding:9px 12px;
+  border:1px solid #d6d6d6;
+  border-radius:24px;
+  font:inherit;
+  color:#333;
+}
+.navbar-admin-link{
+  color:#49557e;
+  font-size:15px;
+  white-space:nowrap;
+}
+.navbar-admin-link:hover{
+  color:tomato;
+}
 .navbar button{
     background: transparent;
     font-size: 16px;
@@ -85,7 +115,20 @@
         display:none;
 
     }
-   
+    .navbar-right{
+      gap:12px;
+    }
+    .navbar-search-input{
+      position:absolute;
+      top:76px;
+      right:10%;
+      z-index:20;
+      width:min(80vw,320px);
+      background:#fff;
+    }
+    .navbar-admin-link{
+      font-size:13px;
+    }
 }
 /* Profile container */
 .navbar-profile {
