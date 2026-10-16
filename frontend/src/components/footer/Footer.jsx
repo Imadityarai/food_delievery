@@ -8,7 +8,7 @@ function Footer() {
     <footer className="footer" id="footer">
       {/* Left Section */}
       <div className="footer-section footer-left">
-        <img src={assets.logo} alt="Company Logo" className="footer-logo" />
+        <img src={assets.logo} alt="SmartFood logo" className="footer-logo" />
         <p className="footer-description">
           We provide the best services to make your life easier. Quality, trust, and customer satisfaction are our top priorities.
         </p>

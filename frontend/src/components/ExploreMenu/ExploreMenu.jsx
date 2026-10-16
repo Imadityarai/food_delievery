@@ -25,7 +25,11 @@ const ExploreMenu = ({ category, setcategory }) => {
           >
             <img
               src={item.menu_image}
-              alt=""
+              alt={`${item.menu_name} category`}
+              loading="lazy"
+              decoding="async"
+              width={item.width}
+              height={item.height}
               className={item.menu_name === category ? "active" : ""}
             />
             <span>{item.menu_name}</span>

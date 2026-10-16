@@ -13,7 +13,15 @@ function Cart() {
           if (cartItems[item._id] > 0) {
             return (
               <div className="cart-item" key={item._id}>
-                <img src={imageUrl(item.image)} alt={item.name} className="cart-item-image" />
+                <img
+                  src={imageUrl(item.image)}
+                  alt={item.name}
+                  className="cart-item-image"
+                  loading="lazy"
+                  decoding="async"
+                  width="360"
+                  height="280"
+                />
                 <div className="cart-item-details">
                   <p className="cart-item-name">{item.name}</p>
                   <p className="cart-item-quantity">Qty: {cartItems[item._id]}</p>
@@ -25,6 +33,10 @@ function Cart() {
                   onClick={() => removefromCart(item._id)}
                   className="cart-item-remove"
                   alt="Remove item"
+                  loading="lazy"
+                  decoding="async"
+                  width="35"
+                  height="34"
                 />
               </div>
             );

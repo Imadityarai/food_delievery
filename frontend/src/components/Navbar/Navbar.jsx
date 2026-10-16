@@ -35,7 +35,7 @@ const Navbar = ({ setShowLoginPop, searchQuery, setSearchQuery }) => {
   return (
     <div className="navbar">
       <Link to="/">
-        <img src={assets.logo} alt="Logo" className="logo" />
+        <img src={assets.logo} alt="SmartFood logo" className="logo" />
       </Link>
 
       <ul className="navbar-menu">
@@ -67,7 +67,7 @@ const Navbar = ({ setShowLoginPop, searchQuery, setSearchQuery }) => {
           aria-label={searchOpen ? "Close search" : "Search dishes"}
           aria-expanded={searchOpen}
         >
-          <img src={assets.search_icon} alt="" />
+          <img src={assets.search_icon} alt="Search" />
         </button>
 
         {ADMIN_URL && (
@@ -83,7 +83,7 @@ const Navbar = ({ setShowLoginPop, searchQuery, setSearchQuery }) => {
 
         <div className="navbar-search-icon">
           <Link to="/cart">
-            <img src={assets.basket_icon} alt="Basket" />
+            <img src={assets.basket_icon} alt="Shopping cart" />
           </Link>
           <div className="dot"></div>
         </div>
@@ -101,7 +101,7 @@ const Navbar = ({ setShowLoginPop, searchQuery, setSearchQuery }) => {
               <img src={assets.profile_icon} alt="Profile" className="navbar-icon" />
               <ul className="navbar-dropdown">
                 <li>
-                  <img src={assets.bag_icon} alt="Bag" className="navbar-icon" />
+                  <img src={assets.bag_icon} alt="Orders" className="navbar-icon" />
                   Orders
                 </li>
                 <li    onClick={logout}>
