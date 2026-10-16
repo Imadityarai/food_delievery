@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
-import './cart.css';
+import './Cart.css';
 import { StoreContext } from '../../context/store_context';
 import {Link} from "react-router-dom"
 import { imageUrl } from "../../config/api";

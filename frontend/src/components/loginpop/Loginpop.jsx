@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import './Loginpop.css';
+import './loginpop.css';
 import axios from "axios";
 import { StoreContext } from '../../context/store_context';
 import { API_URL } from "../../config/api";
 
 const Loginpop = ({ setShowLoginPop }) => {
-  // ✅ Access context inside the component
+  //  Access context inside the component
   const { setToken } = useContext(StoreContext);
 
   // Track current mode: "signin" or "signup"
