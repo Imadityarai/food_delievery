@@ -60,6 +60,15 @@
 .loginpop-form button:hover {
   background: #333;
 }
+.loginpop-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.loginpop-error {
+  margin-top: 0.75rem;
+  color: #b00020;
+  font-size: 0.9rem;
+}
 p span{
     color:red;
 }
