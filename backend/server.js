@@ -10,8 +10,19 @@ import { uploadsDir } from "./config/uploads.js";
 
 const app = express();
 const port = Number(process.env.PORT || 4000);
-const allowedOrigins =
-process.env.CLIENT_ORIGINS?.split(",");
+const configuredOrigins = (process.env.CLIENT_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim().replace(/\/+$/, ""))
+  .filter(Boolean);
+
+if (process.env.NODE_ENV === "production" && configuredOrigins.length === 0) {
+  throw new Error("CLIENT_ORIGINS must contain the deployed frontend origin in production");
+}
+
+const allowedOrigins = configuredOrigins.length > 0
+  ? configuredOrigins
+  : ["http://localhost:5173", "http://localhost:5174"];
+
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT_SECRET must be set in the environment");
 }
@@ -19,10 +30,17 @@ if (!process.env.JWT_SECRET) {
 // Middleware
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    const normalizedOrigin = origin?.trim().replace(/\/+$/, "");
+    if (!normalizedOrigin || allowedOrigins.includes(normalizedOrigin)) {
       return callback(null, true);
     }
-    return callback(new Error("Origin not allowed by CORS"));
+    console.warn("CORS rejected origin", {
+      origin: normalizedOrigin,
+      allowedOrigins,
+    });
+    const error = new Error("Origin not allowed by CORS");
+    error.status = 403;
+    return callback(error);
   },
 }));
 app.use(express.json({ limit: "1mb" }));
@@ -42,11 +60,11 @@ app.get("/", (req, res) => {
 });
 
 app.use((error, req, res, next) => {
-  console.error(error);
   if (error.message === "Origin not allowed by CORS") {
     return res.status(403).json({ success: false, message: error.message });
   }
-  return res.status(500).json({ success: false, message: "Internal server error" });
+  console.error(error);
+  return res.status(error.status || 500).json({ success: false, message: "Internal server error" });
 });
 
 // Start server
