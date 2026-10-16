@@ -19,7 +19,7 @@ const App = () => {
         setSearchQuery={setSearchQuery}
       />
     <Routes>
-      <Route path="/"element={<Home searchQuery={searchQuery}/>}></Route>
+      <Route path="/"element={<Home searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>}></Route>
          <Route path="/cart"element={<Cart/>}></Route>
             <Route path="/placeorder"element={<Placeorder/>}></Route>
     </Routes>

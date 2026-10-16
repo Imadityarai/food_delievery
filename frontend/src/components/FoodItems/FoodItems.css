@@ -6,6 +6,14 @@
     transition: 0.3s;
     animation: fadeIn 0.5s ease-in-out;
 }
+.food-item-highlighted{
+    outline:3px solid tomato;
+    outline-offset:5px;
+    animation:surprisePulse 1.4s ease-in-out 2;
+}
+@keyframes surprisePulse{
+    50%{box-shadow:0 0 0 8px rgba(255,99,71,.16);}
+}
 .food-item-image{
     width: 100%;
     border-radius: 15px 15px 0 0;
